@@ -10,6 +10,11 @@ export type ShallowLocations = {
 
 export type Location = {
   name: string;
+  pokemon_encounters: {
+    pokemon: {
+      name: string;
+    };
+  }[];
 };
 
 export class PokeAPI {

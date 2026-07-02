@@ -7,10 +7,10 @@ export function cleanInput(input: string): string[] {
     .map((token) => token.toLowerCase());
 }
 
-export function startREPL(state: State) {
+export async function startREPL(state: State) {
   state.rl.prompt();
 
-  state.rl.on("line", (line) => {
+  state.rl.on("line", async (line) => {
     const input = line.trim();
 
     const command = state.commands[input];

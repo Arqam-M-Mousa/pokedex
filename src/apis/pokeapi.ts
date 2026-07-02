@@ -50,4 +50,19 @@ export class PokeAPI {
     this.#cache.add<Location>(url, data);
     return data;
   }
+
+  async fetchPokemon(name: string): Promise<any> {
+    const url = `${BASE_URL}/pokemon/${name}`;
+
+    const cached = this.#cache.get(url);
+    if (cached) return cached;
+
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Failed to fetch pokemon");
+
+    const data = await res.json();
+
+    this.#cache.add(url, data);
+    return data;
+  }
 }
